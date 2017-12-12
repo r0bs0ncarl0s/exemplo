@@ -1,9 +1,10 @@
-package br.com.casnav;
+package br.com.casnav.robson;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 public class Calculadora implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	public BigDecimal somar(BigDecimal val1, BigDecimal val2) {
 		if((val1!=null) && (val2!=null)) {

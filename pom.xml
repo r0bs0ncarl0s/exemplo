@@ -1,41 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  	<modelVersion>4.0.0</modelVersion>
-  
-  	<groupId>br.com.casnav</groupId>
-  	<artifactId>exemplo</artifactId>
-  	<version>1.0</version>
-  	
-  	<packaging>jar</packaging>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>br.com.casnav.robson</groupId>
+    <artifactId>exemplo</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+
     <name>exemplo</name>
-  	<description>exemplo</description>
-	<url>https://github.com/r0bs0ncarl0s/exemplo</url>
+    <description>exemplo</description>
+    <url>https://github.com/r0bs0ncarl0s/exemplo</url>
+    
+    <issueManagement>
+		<url>https://github.com/r0bs0ncarl0s/exemplo/issues</url>
+		<system>GitHub Issues</system>
+	</issueManagement>
 	
-	<properties>
-		<maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
-		<build.number>${project.version}.${maven.build.timestamp}</build.number>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>		
-	</properties>	
-	<build>
-		<finalName>${project.artifactId}</finalName>
-		<resources>
+	<scm>
+		<url>https://github.com/r0bs0ncarl0s/exemplo</url>
+		<connection>scm:git:git://github.com/r0bs0ncarl0s/exemplo.git</connection>
+		<developerConnection>scm:git:git@github.com:r0bs0ncarl0s/exemplo.git</developerConnection>
+	</scm>
+ 	
+  	<developers>
+		<developer>
+			<id>r0bs0ncarl0s</id>
+			<email>r0bs0ncarl0s@hotmail.com</email>
+			<name>Robson Carlos</name>
+			<url>https://github.com/r0bs0ncarl0s</url>
+		</developer>
+	</developers>
+
+    <properties>
+    	<maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
+    	<build.number>${project.version}.${maven.build.timestamp}</build.number>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+		<!-- JUNIT -->
+		<dependency>
+    		<groupId>junit</groupId>
+    		<artifactId>junit</artifactId>
+    		<version>4.12</version>
+    		<scope>test</scope>
+		</dependency>
+    	<!-- WebContainer Compile Dependency -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>8.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+			<version>2.0</version>
+			<scope>provided</scope>
+		</dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <resources>
 			<resource>
 				<directory>src/main/resources</directory>
 				<filtering>true</filtering>
-			</resource>			
+			</resource>
 		</resources>
-		<plugins>			
-			<plugin>
+        <plugins>
+        	<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-                <version>2.5</version>				
-			</plugin>			
-		</plugins>		
-	</build>
-	<dependencies>
-		<dependency>
-		    <groupId>org.apache.logging.log4j</groupId>
-		    <artifactId>log4j-core</artifactId>
-		    <version>2.10.0</version>
-		</dependency>		
-	</dependencies>
+		        <artifactId>maven-resources-plugin</artifactId>
+		        <version>3.0.2</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.0.1</version>
+				<executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.10.4</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+        </plugins>
+    </build>
+    
+    <distributionManagement>
+  		<repository>
+    		<id>bintray</id>
+    		<url>https://api.bintray.com/maven/r0bs0ncarl0s/maven-repo/github/;publish=1</url>
+  		</repository>
+	</distributionManagement>
+	
+	<repositories>
+  		<repository>
+    		<id>bintray</id>
+    		<url>http://dl.bintray.com/r0bs0ncarl0s/maven-repo</url>
+    		<releases>
+      			<enabled>true</enabled>
+    		</releases>
+    		<snapshots>
+      			<enabled>false</enabled>
+    		</snapshots>
+  		</repository>
+	</repositories>
+
 </project>
